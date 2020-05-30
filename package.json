@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/ng-packagr/package.schema.json",
-  "name": "ngx-virtual-scroller",
+  "name": "@charllie/ngx-virtual-scroller",
   "version": "4.0.2",
   "description": "Angular module for virtual -infinite- list. Supports horizontal/vertical, variable heights, & multi-column",
   "main": "dist/virtual-scroller.js",
@@ -34,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rintoj/ngx-virtual-scroller.git"
+    "url": "git+https://github.com/charllie/ngx-virtual-scroller.git"
   },
   "keywords": [
     "virtual scroll",
@@ -56,9 +56,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rintoj/ngx-virtual-scroller/issues"
+    "url": "https://github.com/charllie/ngx-virtual-scroller/issues"
   },
-  "homepage": "https://github.com/rintoj/ngx-virtual-scroller#readme",
+  "homepage": "https://github.com/charllie/ngx-virtual-scroller#readme",
   "peerDependencies": {
     "@angular/core": ">=6.0.0"
   },
@@ -67,6 +67,7 @@
     "@types/tween.js": "17.2.0"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "^0.901.7",
     "@angular/cli": "9.0.3",
     "@angular/common": "9.0.2",
     "@angular/compiler": "9.0.2",

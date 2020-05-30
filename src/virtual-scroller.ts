@@ -1,29 +1,9 @@
-import {
-	Component,
-	ContentChild,
-	ElementRef,
-	EventEmitter,
-	Inject,
-	Optional,
-	Input,
-	NgModule,
-	NgZone,
-	OnChanges,
-	OnDestroy,
-	OnInit,
-	Output,
-	Renderer2,
-	ViewChild,
-	ChangeDetectorRef,
-	InjectionToken
-} from '@angular/core';
+import { CommonModule, isPlatformServer } from '@angular/common';
+import { ChangeDetectorRef, Component, ContentChild, ElementRef, EventEmitter, Inject, Input, NgModule, NgZone, OnChanges, OnDestroy, OnInit, Optional, Output, PLATFORM_ID, Renderer2, ViewChild } from '@angular/core';
+import * as tween from '@tweenjs/tween.js';
 
-import { PLATFORM_ID } from '@angular/core';
-import { isPlatformServer } from '@angular/common';
 
-import { CommonModule } from '@angular/common';
 
-import * as tween from '@tweenjs/tween.js'
 
 export interface VirtualScrollerDefaultOptions {
 	scrollThrottlingTime: number;
@@ -658,7 +638,7 @@ export class VirtualScrollerComponent implements OnInit, OnChanges, OnDestroy {
 	protected _scrollType;
 	protected _pageOffsetType;
 	protected _childScrollDim;
-	protected _translateDir;
+	protected _translateDir: 'x' | 'y';
 	protected _marginDir;
 	protected updateDirection(): void {
 		if (this.horizontal) {
@@ -667,7 +647,7 @@ export class VirtualScrollerComponent implements OnInit, OnChanges, OnDestroy {
 			this._pageOffsetType = 'pageXOffset';
 			this._childScrollDim = 'childWidth';
 			this._marginDir = 'margin-left';
-			this._translateDir = 'translateX';
+			this._translateDir = 'x';
 			this._scrollType = 'scrollLeft';
 		}
 		else {
@@ -676,7 +656,7 @@ export class VirtualScrollerComponent implements OnInit, OnChanges, OnDestroy {
 			this._pageOffsetType = 'pageYOffset';
 			this._childScrollDim = 'childHeight';
 			this._marginDir = 'margin-top';
-			this._translateDir = 'translateY';
+			this._translateDir = 'y';
 			this._scrollType = 'scrollTop';
 		}
 	}
@@ -799,8 +779,10 @@ export class VirtualScrollerComponent implements OnInit, OnChanges, OnDestroy {
 						this.renderer.setStyle(this.contentElementRef.nativeElement, this._marginDir, `${viewport.padding}px`);
 					}
 					else {
-						this.renderer.setStyle(this.contentElementRef.nativeElement, 'transform', `${this._translateDir}(${viewport.padding}px)`);
-						this.renderer.setStyle(this.contentElementRef.nativeElement, 'webkitTransform', `${this._translateDir}(${viewport.padding}px)`);
+						const transform = this._translateDir === 'x'
+							? `translate3d(${viewport.padding}px, 0, 1px)`
+							: `translate3d(0, ${viewport.padding}px, 1px)`;
+						this.renderer.setStyle(this.contentElementRef.nativeElement, 'transform', transform);
 					}
 				}
 
@@ -808,8 +790,10 @@ export class VirtualScrollerComponent implements OnInit, OnChanges, OnDestroy {
 					let scrollPosition = this.getScrollElement()[this._scrollType];
 					let containerOffset = this.getElementsOffset();
 					let offset = Math.max(scrollPosition - viewport.padding - containerOffset + this.headerElementRef.nativeElement.clientHeight, 0);
-					this.renderer.setStyle(this.headerElementRef.nativeElement, 'transform', `${this._translateDir}(${offset}px)`);
-					this.renderer.setStyle(this.headerElementRef.nativeElement, 'webkitTransform', `${this._translateDir}(${offset}px)`);
+					const transform = this._translateDir === 'x'
+						? `translate3d(${offset}px, 0, 1px)`
+						: `translate3d(0, ${offset}px, 1px)`;
+					this.renderer.setStyle(this.headerElementRef.nativeElement, 'transform', transform);
 				}
 
 				const changeEventArg: IPageInfo = (startChanged || endChanged) ? {
