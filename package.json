@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/ng-packagr/package.schema.json",
   "name": "@charllie/ngx-virtual-scroller",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Angular module for virtual -infinite- list. Supports horizontal/vertical, variable heights, & multi-column",
   "main": "dist/virtual-scroller.js",
   "types": "dist/virtual-scroller.d.ts",
@@ -59,8 +59,8 @@
     "@angular/core": ">=10.0.0"
   },
   "dependencies": {
-    "@tweenjs/tween.js": "18.6.0",
-    "@types/tween.js": "18.5.1"
+    "@tweenjs/tween.js": "17.4.0",
+    "@types/tween.js": "17.2.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1001.1",

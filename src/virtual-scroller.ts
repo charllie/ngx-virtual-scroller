@@ -546,7 +546,7 @@ export class VirtualScrollerComponent implements OnInit, OnChanges, OnDestroy {
 			.onStop(() => {
 				cancelAnimationFrame(animationRequest);
 			})
-			.start(undefined);
+			.start();
 
 		const animate = (time?: number) => {
 			if (!newTween["isPlaying"]()) {
@@ -709,7 +709,7 @@ export class VirtualScrollerComponent implements OnInit, OnChanges, OnDestroy {
 
 	protected padding: number = 0;
 	protected previousViewPort: IViewport = <any>{};
-	protected currentTween: any;
+	protected currentTween: tween.Tween;
 	protected cachedItemsLength: number;
 
 	protected disposeScrollHandler: () => void | undefined;
