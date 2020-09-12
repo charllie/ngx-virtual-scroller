@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/ng-packagr/package.schema.json",
   "name": "@charllie/ngx-virtual-scroller",
-  "version": "4.0.2",
+  "version": "5.0.0",
   "description": "Angular module for virtual -infinite- list. Supports horizontal/vertical, variable heights, & multi-column",
   "main": "dist/virtual-scroller.js",
   "types": "dist/virtual-scroller.d.ts",
@@ -9,15 +9,11 @@
   "scripts": {
     "cleanup": "rimraf dist",
     "build": "ng-packagr -p package.json",
-    "build:docs": "rimraf demo/node_modules/ngx-virtual-scroller && cd dist && copyfiles **/* ../demo/node_modules/ngx-virtual-scroller && cd .. && rimraf docs && mkdir docs && cd demo && npm run build && cd dist/demo && copyfiles **/* ../../../docs && cd ../../.. && replace \"<base href=\\\"/\\\">\" \"<base href=\\\"/ngx-virtual-scroller/\\\">\" docs/index.html",
-    "build:all": "npm run build && npm run build:docs",
     "lint": "tslint src/**/*.ts",
-    "debug-demo": "npm run build:all && cd demo && npm run start",
-    "test": "npm test",
     "ngc": "ngc",
     "update-npm-versions": "npm-check --skip-unused --update-all --save-exact --ignore typescript --ignore @tweenjs/tween.js --ignore @types/tween.js",
     "prepublishOnly": "PLEASE RUN \"npm run prod-publish\" NOT \"npm publish\"",
-    "prod-publish": "npm run build:all && npm publish ./dist",
+    "prod-publish": "npm run build && npm publish ./dist",
     "publish-test": "npm pack ./dist"
   },
   "ngPackage": {
@@ -60,38 +56,38 @@
   },
   "homepage": "https://github.com/charllie/ngx-virtual-scroller#readme",
   "peerDependencies": {
-    "@angular/core": ">=6.0.0"
+    "@angular/core": ">=10.0.0"
   },
   "dependencies": {
-    "@tweenjs/tween.js": "17.4.0",
-    "@types/tween.js": "17.2.0"
+    "@tweenjs/tween.js": "18.6.0",
+    "@types/tween.js": "18.5.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.901.7",
-    "@angular/cli": "9.0.3",
-    "@angular/common": "9.0.2",
-    "@angular/compiler": "9.0.2",
-    "@angular/compiler-cli": "9.0.2",
-    "@angular/core": "9.0.2",
-    "@angular/forms": "9.0.2",
+    "@angular-devkit/build-angular": "^0.1001.1",
+    "@angular/cli": "10.1.1",
+    "@angular/common": "10.1.1",
+    "@angular/compiler": "10.1.1",
+    "@angular/compiler-cli": "10.1.1",
+    "@angular/core": ">=10.1.1",
+    "@angular/forms": "10.1.1",
     "@angular/http": "7.2.16",
-    "@angular/language-service": "9.0.2",
-    "@angular/platform-browser": "9.0.2",
-    "@angular/platform-browser-dynamic": "9.0.2",
-    "@angular/router": "9.0.2",
+    "@angular/language-service": "10.1.1",
+    "@angular/platform-browser": "10.1.1",
+    "@angular/platform-browser-dynamic": "10.1.1",
+    "@angular/router": "10.1.1",
     "@types/node": "13.7.6",
     "codelyzer": "5.2.1",
-    "copyfiles": "2.2.0",
-    "core-js": "3.6.4",
-    "ng-packagr": "9.0.2",
-    "npm-check": "5.9.0",
-    "replace": "1.1.5",
+    "copyfiles": "2.3.0",
+    "core-js": "3.6.5",
+    "ng-packagr": "10.1.0",
+    "npm-check": "5.9.2",
+    "replace": "1.2.0",
     "replace-x": "1.7.2",
     "rimraf": "3.0.2",
-    "rxjs": "6.5.4",
-    "tslib": "1.11.0",
-    "tslint": "6.0.0",
-    "typescript": "3.7.5",
-    "zone.js": "0.10.2"
+    "rxjs": "6.6.3",
+    "tslib": "2.0.1",
+    "tslint": "6.1.3",
+    "typescript": "~3.9.0",
+    "zone.js": "0.11.1"
   }
 }
